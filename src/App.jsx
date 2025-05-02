@@ -1,6 +1,6 @@
 import { Home } from './pages/Home';
 import {
-	createHashRouter,
+	createBrowserRouter,
 	createRoutesFromElements,
 	Route,
 	RouterProvider,
@@ -13,7 +13,7 @@ import { CorreoElectronico } from './pages/CorreoElectronico';
 import { NotFound } from './pages/NotFound';
 
 export const App = () => {
-	const router = createHashRouter(
+	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route path="/" element={<RootLayout />}>
 				<Route index element={<Home />} />
