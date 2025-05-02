@@ -6,7 +6,7 @@ export const NotFound = () => {
 	const navegite = useNavigate();
 	return (
 		<div>
-			<TitleMain>ERROR 404</TitleMain>
+			<TitleMain>Ups, ocurrio un error :c</TitleMain>
 
 			<p>Not found</p>
 			<BtnPrimary onClick={() => navegite('/')}>
