@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { dataContext } from '../context/dataContext';
 import { mensajeCanal } from '../data/mensajeCanal';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ export const useCanal = (canal) => {
 		datoToEdit,
 		setDatoToEdit,
 	} = useContext(dataContext);
+	const [openModal, setOpenModal] = useState(false);
 
 	const dataToSend = mensajeCanal[dataTypeM]?.[canal];
 
@@ -46,18 +47,25 @@ export const useCanal = (canal) => {
 
 		if (isLastChannel) {
 			console.log('Tus mensajes enviados son: ', datoToEdit);
-			navigate('/', { replace: true });
+			// navigate('/', { replace: true });
+			setOpenModal(true);
 			setDataTypeM('');
 			setDataChannelSelected([]);
 			setDatoToEdit({});
-			return;
 		} else {
+			setOpenModal(false);
 			navigate(`/${nextChannels[0]}`, {
 				state: { selectedChannels: nextChannels },
 			});
 		}
 	};
-	return { initialData, isLastChannel, _handleOnChange, _handleOnSubmit };
+	return {
+		initialData,
+		isLastChannel,
+		_handleOnChange,
+		_handleOnSubmit,
+		openModal,
+	};
 };
 useCanal.propTypes = {
 	canal: PropTypes.string.isRequired,
